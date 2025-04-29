@@ -134,7 +134,7 @@ def main():
 
     # 解析命令行参数
     parser = argparse.ArgumentParser(description="使用 SAM2 对图片进行自动分割")
-    parser.add_argument('--input_dir', type=str, default='/home/surgicalai/Data/images', help="输入图片目录路径")
+    parser.add_argument('--input_dir', type=str, default='/home/surgicalai/Data/images_2', help="输入图片目录路径")
     parser.add_argument('--output_dir', type=str, default="/home/surgicalai/Data/output/sam2", help="输出图片保存目录")
     args = parser.parse_args()
 
@@ -155,15 +155,15 @@ def main():
     sam2 = build_sam2(model_cfg, sam2_checkpoint, device=device, apply_postprocessing=False)
     mask_generator = SAM2AutomaticMaskGenerator(
         model=sam2,
-        points_per_side=8,
-        points_per_batch=32,
-        pred_iou_thresh=0.9,
-        stability_score_thresh=0.5,
-        stability_score_offset=2.0,
-        crop_n_layers=2,
-        box_nms_thresh=2.0,
+        points_per_side=64,
+        points_per_batch=128,
+        pred_iou_thresh=0.7,
+        stability_score_thresh=0.92,
+        stability_score_offset=0.7,
+        crop_n_layers=1,
+        box_nms_thresh=0.7,
         crop_n_points_downscale_factor=2,
-        min_mask_region_area=50,
+        min_mask_region_area=25.0,
         use_m2m=True,
     )
     logger.info("模型加载完成")
