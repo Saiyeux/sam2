@@ -120,7 +120,7 @@ def sample_points_from_mask(mask, x_interval=10, y_interval=10, border_reduction
         # 按 x 坐标排序
         row_points.sort(key=lambda p: p[0])
         # 移除开头和结尾的点
-        trimmed_points = row_points[5:-3]
+        trimmed_points = row_points[2:]
         filtered_points.extend(trimmed_points)
 
     return filtered_points
@@ -214,7 +214,7 @@ def main():
     parser.add_argument('--input_dir', type=str, default='/home/surgicalai/Data/images_3', help="输入图片目录路径")
     parser.add_argument('--output_dir', type=str, default="/home/surgicalai/Data/output/sam2", help="输出图片保存目录")
     parser.add_argument('--sample_interval', type=int, default=30, help="追踪点的x和y间隔（像素）")
-    parser.add_argument('--top_n', type=int, default=3, help="选取面积最大的前n个区域生成追踪点")
+    parser.add_argument('--top_n', type=int, default=1, help="选取面积最大的前n个区域生成追踪点")
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
