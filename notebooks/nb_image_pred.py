@@ -134,7 +134,7 @@ def main():
 
     # 解析命令行参数
     parser = argparse.ArgumentParser(description="使用 SAM2 对图片进行自动分割")
-    parser.add_argument('--input_dir', type=str, default='/home/surgicalai/Data/misc/sam2', help="输入图片目录路径")
+    parser.add_argument('--input_dir', type=str, default='/home/surgicalai/Scripts/img/realsense', help="输入图片目录路径")
     parser.add_argument('--output_dir', type=str, default="/home/surgicalai/Data/output/sam2", help="输出图片保存目录")
     args = parser.parse_args()
 

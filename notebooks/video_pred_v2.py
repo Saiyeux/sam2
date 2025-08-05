@@ -11,6 +11,7 @@ import math
 import inspect
 import gc
 import shutil
+import re
 try:
     import pynvml
     pynvml_available = True
@@ -131,7 +132,7 @@ frame_names = [
     p for p in os.listdir(args.video_dir)
     if os.path.splitext(p)[-1] in [".jpg", ".jpeg", ".JPG", ".JPEG"]
 ]
-frame_names.sort(key=lambda p: int(os.path.splitext(p)[0]))
+frame_names.sort(key=lambda p: int(re.search(r'\d+', os.path.splitext(p)[0]).group()))
 
 # 定义分块大小
 block_size = 200
